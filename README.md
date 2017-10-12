@@ -14,3 +14,7 @@ npm install
 cd gnib-checker
 npm run start
 ```
+
+## Issues
+
+Let me know at https://github.com/ricardodantas/gnib-checker/issues

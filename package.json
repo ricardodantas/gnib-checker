@@ -7,7 +7,7 @@
     "start": "ts-node ./src/index",
     "build": "tsc"
   },
-  "author": "",
+  "author": "Ricardo Dantas",
   "license": "ISC",
   "dependencies": {
     "@types/jasmine": "^2.6.0",
