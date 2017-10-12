@@ -3,11 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "start": "npm run build && ts-node ./bin/init",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "npm run build && ./node_modules/npm-auto-version/bin/npm-auto-version",
+    "postpublish": "git add package.json && git commit -am \"update package version\" && git push && git push origin --tags"
   },
-  "author": "Ricardo Dantas",
+  "bin": {
+    "gnib-checker": "./bin/init.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ricardodantas/gnib-checker.git"
+  },
+  "engine": "node >= 6.10.3",
+  "author": "Ricardo Dantas <ricardodantas@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@types/jasmine": "^2.6.0",
@@ -20,5 +31,8 @@
     "prepend": "^1.0.2",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "npm-auto-version": "^1.0.0"
   }
 }
