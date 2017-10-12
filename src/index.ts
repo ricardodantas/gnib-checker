@@ -28,8 +28,19 @@ function gnibChecker(): void {
         open: 'https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/AppSelect?OpenForm'
       });
     }
-    setTimeout(gnibChecker, timeToCheck);
-  });
+      setTimeout(gnibChecker, timeToCheck);
+    })
+    .catch((error) => {
+      console.log('========> Error: ', error);
+      notifier.notify({
+        title: 'GNIB Appointment ERROR',
+        message: JSON.stringify(error),
+        icon: logoPath,
+        sound: true,
+        timeout: 58
+      });
+      setTimeout(gnibChecker, timeToCheck);
+    });
 }
 
 console.log('Checker started...');
