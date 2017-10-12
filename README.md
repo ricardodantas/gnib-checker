@@ -1,6 +1,6 @@
 # GNIB Checker
 
-This is a command script which checks every 60 seconds for GNIB appointments and shows a notification if there are some slots available.
+This is a command script which checks every 15 seconds for GNIB appointments and shows a notification if there are some slots available.
 
 ## Install
 
