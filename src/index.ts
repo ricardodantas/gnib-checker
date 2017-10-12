@@ -5,6 +5,7 @@ import pushNotifications from './pushNotification';
 require('dotenv').config();
 
 const logoPath = path.join(__dirname, '../images/logo.png');
+const timeToCheck = 15000;
 
 function gnibChecker(): void {
   gnibIrelandClient.checkSlotsAvailability(gnibIrelandClient.Types.New)
@@ -26,7 +27,7 @@ function gnibChecker(): void {
         open: 'https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/AppSelect?OpenForm'
       });
     }
-    setTimeout(gnibChecker, 60000);
+    setTimeout(gnibChecker, timeToCheck);
   });
 }
 
