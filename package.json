@@ -1,0 +1,18 @@
+{
+  "name": "gnib-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "ts-node ./src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jasmine": "^2.6.0",
+    "@types/node": "~6.0.46",
+    "gnib-ireland-client": "^1.0.23",
+    "node-notifier": "^5.1.2"
+  }
+}
