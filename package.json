@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "ts-node ./src/index",
+    "start": "npm run build && ts-node ./bin/init",
     "build": "tsc"
   },
   "author": "Ricardo Dantas",
