@@ -1,6 +1,8 @@
 import notifier = require('node-notifier');
 import gnibIrelandClient from 'gnib-ireland-client';
 import path = require('path');
+import pushNotifications from './pushNotification';
+require('dotenv').config();
 
 const logoPath = path.join(__dirname, '../images/logo.png');
 
@@ -13,9 +15,11 @@ function gnibChecker(): void {
       result.data.slots.map((slot: any) => {
         message.push(slot.time);
       });
+      const finalMessage = message.join('\n');
+      pushNotifications(finalMessage);
       notifier.notify({
         title: 'GNIB Appointment Available',
-        message: message.join('\n'),
+        message: finalMessage,
         icon: logoPath,
         sound: true,
         timeout: 58,
