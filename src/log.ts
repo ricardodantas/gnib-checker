@@ -12,6 +12,6 @@ export function writeLog(content: string): void {
   });
 }
 
-// export function searchForEntryInLog(lineCount: number, callback: Function) {
+export function searchForEntryInLog(lineCount: number, callback: Function) {
 
-// }
+}
