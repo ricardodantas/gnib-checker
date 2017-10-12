@@ -4,13 +4,13 @@ import path = require('path');
 
 const logoPath = path.join(__dirname, '../images/logo.png');
 
-function gnibChecker() {
+function gnibChecker(): void {
   gnibIrelandClient.checkSlotsAvailability(gnibIrelandClient.Types.New)
-  .then(function (result) {
+  .then((result: any) => {
     console.log('Checked with result: ', result);
     if (result.status === 'success' && result.data.slots) {
-      const message = [];
-      result.data.slots.map((slot) => {
+      const message: Array<string> = [];
+      result.data.slots.map((slot: any) => {
         message.push(slot.time);
       });
       notifier.notify({
