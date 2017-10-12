@@ -2,6 +2,7 @@ import notifier = require('node-notifier');
 import gnibIrelandClient from 'gnib-ireland-client';
 import path = require('path');
 import pushNotifications from './pushNotification';
+import moment = require('moment');
 require('dotenv').config();
 
 const logoPath = path.join(__dirname, '../images/logo.png');
@@ -10,7 +11,7 @@ const timeToCheck = 15000;
 function gnibChecker(): void {
   gnibIrelandClient.checkSlotsAvailability(gnibIrelandClient.Types.New)
   .then((result: any) => {
-    console.log('Checked with result: ', result);
+    console.log(`${moment().format('MMMM Do YYYY, h:mm:ss a')} - Checker response: `, JSON.stringify(result));
     if (result.status === 'success' && result.data.slots) {
       const message: Array<string> = [];
       result.data.slots.map((slot: any) => {

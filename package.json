@@ -14,6 +14,7 @@
     "@types/node": "~6.0.46",
     "dotenv": "^4.0.0",
     "gnib-ireland-client": "^1.0.23",
+    "moment": "^2.19.1",
     "node-notifier": "^5.1.2",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
