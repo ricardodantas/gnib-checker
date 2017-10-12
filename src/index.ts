@@ -14,19 +14,25 @@ function gnibChecker(): void {
     console.log(`${moment().format('MMMM Do YYYY, h:mm:ss a')} - Checker response: `, JSON.stringify(result));
     if (result.status === 'success' && result.data.slots) {
       const message: Array<string> = [];
+      const ids: Array<string> = [];
       result.data.slots.map((slot: any) => {
         writeLog(`${moment().format()} ${slot.id}`);
         message.push(slot.time);
+        ids.push(slot.id);
       });
-      const finalMessage = message.join('\n');
-      pushNotifications(finalMessage);
-      notifier.notify({
-        title: 'GNIB Appointment Available',
-        message: finalMessage,
-        icon: logoPath,
-        sound: true,
-        timeout: 58,
-        open: 'https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/AppSelect?OpenForm'
+      searchForEntryInLog(ids[0], (condition) => {
+        if (!condition) {
+          const finalMessage = message.join('\n');
+          pushNotifications(finalMessage);
+          notifier.notify({
+            title: 'GNIB Appointment Available',
+            message: finalMessage,
+            icon: logoPath,
+            sound: true,
+            timeout: 58,
+            open: 'https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/AppSelect?OpenForm'
+          });
+        }
       });
     } else if (result.status === 'success' && result.data.empty === 'TRUE') {
       // writeLog(`${moment().format()} EMPTY_SLOTS`);
