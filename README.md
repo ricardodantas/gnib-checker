@@ -11,5 +11,6 @@ npm install
 
 ## How to use
 ```
+cd gnib-checker
 npm run start
 ```
