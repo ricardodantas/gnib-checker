@@ -2,7 +2,7 @@ import notifier = require('node-notifier');
 import gnibIrelandClient from 'gnib-ireland-client';
 import path = require('path');
 import pushNotifications from './pushNotification';
-import writeLog from './writeLog';
+import { writeLog, searchForEntryInLog } from './log';
 import moment = require('moment');
 require('dotenv').config();
 
