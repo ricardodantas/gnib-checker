@@ -2,6 +2,30 @@ require('dotenv').config();
 import gnibIrelandClient from 'gnib-ireland-client';
 import { writeLog, searchForEntryInLog, consoleLogWriteLogAndPushNotification } from './log';
 
+interface AvailableSlotsParsedReturn {
+  message: Array<string>;
+  availableSlotIds: Array<string>;
+}
+
+function parseAvailableSlots(result): AvailableSlotsParsedReturn {
+  const message: Array<string> = [];
+  const availableSlotIds: Array<string> = [];
+  result.data.slots.map((slot: any) => {
+    consoleLogWriteLogAndPushNotification({
+      message: JSON.stringify(result),
+      logFileContent: slot.id,
+      allowPushNotification: false,
+      allowDesktopNotification: false
+    });
+    message.push(slot.time);
+    availableSlotIds.push(slot.id);
+  });
+  return {
+    message,
+    availableSlotIds
+  };
+}
+
 export function gnibChecker(): void {
   gnibIrelandClient.checkSlotsAvailability(gnibIrelandClient.Types.New).then((result: any) => {
     consoleLogWriteLogAndPushNotification({
@@ -11,23 +35,12 @@ export function gnibChecker(): void {
       allowDesktopNotification: false
     });
     if (result.status === 'success' && result.data.slots) {
-      const message: Array<string> = [];
-      const availableSlotIds: Array<string> = [];
-      result.data.slots.map((slot: any) => {
-        consoleLogWriteLogAndPushNotification({
-          message: JSON.stringify(result),
-          logFileContent: slot.id,
-          allowPushNotification: false,
-          allowDesktopNotification: false
-        });
-        message.push(slot.time);
-        availableSlotIds.push(slot.id);
-      });
-      searchForEntryInLog(availableSlotIds[0], (condition) => {
+      const availableSlotsParsed = parseAvailableSlots(result);
+      searchForEntryInLog(availableSlotsParsed.availableSlotIds[0], (condition) => {
         if (!condition) {
           consoleLogWriteLogAndPushNotification({
             title: 'GNIB Appointments',
-            message: message.join('\n'),
+            message: availableSlotsParsed.message.join('\n'),
             logFileContent: 'NOT_AVAILABLE_SLOTS',
             allowPushNotification: true,
             allowDesktopNotification: true

@@ -4,20 +4,12 @@ import notifier = require('node-notifier');
 
 const notificationLogoPath = path.join(__dirname, '../../images/logo.png');
 
-export interface GenericNotificationParams {
+export interface NotificationParams {
   title: string;
   message: string;
 }
 
-export interface MacNotificationParams extends GenericNotificationParams{
-  subtitle?: string;
-}
-
-export interface WindowsNotificationParams extends GenericNotificationParams {
-
-}
-
-function macNotification(params: MacNotificationParams): void {
+function macNotification(params: NotificationParams): void {
   const nc = new notifier.NotificationCenter();
   nc.notify({
     ...params,
@@ -28,7 +20,7 @@ function macNotification(params: MacNotificationParams): void {
   });
 }
 
-function genericNotification(params: GenericNotificationParams): void {
+function genericNotification(params: NotificationParams): void {
   notifier.notify({
     ...params,
     icon: notificationLogoPath,
@@ -36,7 +28,7 @@ function genericNotification(params: GenericNotificationParams): void {
   });
 }
 
-function windowsNotification(params: WindowsNotificationParams): void {
+function windowsNotification(params: NotificationParams): void {
   const WindowsToaster = notifier.WindowsToaster;
   const wt = new WindowsToaster();
   wt.notify({
@@ -46,7 +38,7 @@ function windowsNotification(params: WindowsNotificationParams): void {
   });
 }
 
-export default function desktopNotification(params: MacNotificationParams | WindowsNotificationParams): void {
+export default function desktopNotification(params: NotificationParams): void {
   switch (os.type()) {
     case 'Darwin':
       macNotification(params);
