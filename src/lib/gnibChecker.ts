@@ -41,7 +41,6 @@ export function gnibChecker(): void {
           consoleLogWriteLogAndPushNotification({
             title: 'GNIB Appointments',
             message: availableSlotsParsed.message.join('\n'),
-            logFileContent: 'NOT_AVAILABLE_SLOTS',
             allowPushNotification: true,
             allowDesktopNotification: true
           });
