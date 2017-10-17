@@ -19,7 +19,7 @@ export interface ConsoleOptions {
 
 export function consoleLogWriteLogAndPushNotification(options: ConsoleOptions): void {
   if (options.logFileContent) {
-    const logContent = `${moment().format()} ${options.logFileContent}`;
+    const logContent = `${moment().format()}|${options.logFileContent}`;
     writeLog(logContent);
     console.log(logContent);
   } else {
@@ -45,8 +45,9 @@ export function writeLog(content: string): void {
 
 export function searchForEntryInLog(search: string, callback: Function): void {
   firstline(logFilePath).then(result => {
-    const columns = result.split(' ');
-     callback(columns[1] === search);
+    const columns = result.split('|');
+    console.log(columns, search);
+     callback(columns[2] === search);
   }).catch(error => {
     console.log(error);
   });

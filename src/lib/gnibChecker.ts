@@ -13,7 +13,7 @@ function parseAvailableSlots(result): AvailableSlotsParsedReturn {
   result.data.slots.map((slot: any) => {
     consoleLogWriteLogAndPushNotification({
       message: JSON.stringify(result),
-      logFileContent: slot.id,
+      logFileContent: `${slot.id}|${slot.time}`,
       allowPushNotification: false,
       allowDesktopNotification: false
     });
@@ -36,7 +36,7 @@ export function gnibChecker(): void {
     });
     if (result.status === 'success' && result.data.slots) {
       const availableSlotsParsed = parseAvailableSlots(result);
-      searchForEntryInLog(availableSlotsParsed.availableSlotIds[0], (condition) => {
+      searchForEntryInLog(availableSlotsParsed.message[availableSlotsParsed.message.length-1], (condition) => {
         if (!condition) {
           consoleLogWriteLogAndPushNotification({
             title: 'GNIB Appointments',
