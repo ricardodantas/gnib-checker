@@ -36,7 +36,7 @@ export function gnibChecker(): void {
     });
     if (result.status === 'success' && result.data.slots) {
       const availableSlotsParsed = parseAvailableSlots(result);
-      searchForEntryInLog(availableSlotsParsed.message[availableSlotsParsed.message.length-1], (condition) => {
+      searchForEntryInLog(availableSlotsParsed.message, (condition) => {
         if (!condition) {
           consoleLogWriteLogAndPushNotification({
             title: 'GNIB Appointments',

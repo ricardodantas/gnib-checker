@@ -43,11 +43,11 @@ export function writeLog(content: string): void {
   });
 }
 
-export function searchForEntryInLog(search: string, callback: Function): void {
+export function searchForEntryInLog(search: Array<any>, callback: Function): void {
   firstline(logFilePath).then(result => {
     const columns = result.split('|');
     console.log(columns, search);
-     callback(columns[2] === search);
+     callback(search.indexOf(columns[2]) >= 0);
   }).catch(error => {
     console.log(error);
   });
