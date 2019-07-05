@@ -8,7 +8,9 @@
     "start": "npm run build && ts-node ./bin/init",
     "build": "rm -fr dist && tsc",
     "prepublish": "npm run build && ./node_modules/npm-auto-version/bin/npm-auto-version",
-    "postpublish": "git add package.json && git commit -am \"update package version\" && git push && git push origin --tags"
+    "postpublish": "git add package.json && git commit -am \"update package version\" && git push && git push origin --tags",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "bin": {
     "gnib-checker": "./bin/init.js"
@@ -30,11 +32,13 @@
     "node-notifier": "^5.1.2",
     "prepend": "^1.0.2",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "snyk": "^1.192.0"
   },
   "devDependencies": {
     "npm-auto-version": "^1.0.0",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.1"
-  }
+  },
+  "snyk": true
 }
