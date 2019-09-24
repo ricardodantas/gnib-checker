@@ -27,7 +27,7 @@
     "firstline": "^1.2.1",
     "gnib-ireland-client": "^1.0.29",
     "moment": "^2.19.1",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^6.0.0",
     "prepend": "^1.0.2",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
