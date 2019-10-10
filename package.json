@@ -21,7 +21,7 @@
   "author": "Ricardo Dantas <ricardodantas@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@types/jasmine": "^2.6.0",
+    "@types/jasmine": "^3.4.3",
     "@types/node": "~6.0.46",
     "dotenv": "^4.0.0",
     "firstline": "^1.2.1",
