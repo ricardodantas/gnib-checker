@@ -22,7 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/jasmine": "^2.6.0",
-    "@types/node": "~6.0.46",
+    "@types/node": "~13.13.5",
     "dotenv": "^4.0.0",
     "firstline": "^1.2.1",
     "gnib-ireland-client": "^1.0.29",
